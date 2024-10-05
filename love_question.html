@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Question</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #ffe4e1; /* Light pink background */
+            font-family: 'Cursive', sans-serif; /* Handwriting-like font */
+            position: relative;
+            transition: background-color 1s ease;
+        }
+        h1 {
+            font-size: 40px; /* Slightly smaller font size */
+            color: #ff1493; /* Deep pink color */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Soft shadow effect */
+            z-index: 2;
+            margin-bottom: 30px; /* Spacing below the text */
+            text-align: center; /* Center alignment */
+        }
+        .buttons {
+            margin-top: 20px;
+            position: relative;
+            z-index: 2;
+        }
+        button {
+            font-size: 20px;
+            padding: 10px 20px;
+            margin: 0 20px;
+            cursor: pointer;
+            border: none;
+            border-radius: 25px; /* Rounded buttons */
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            font-family: 'Arial', sans-serif; /* Standard font for buttons */
+        }
+        #yes {
+            background-color: #32CD32; /* Lime green */
+            color: white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Soft shadow effect */
+        }
+        #no {
+            background-color: #FF6347; /* Tomato red */
+            color: white;
+            position: relative;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Soft shadow effect */
+        }
+        #yes:hover {
+            background-color: #28a745; /* Darker green on hover */
+        }
+        #no:hover {
+            background-color: #c0392b; /* Darker red on hover */
+        }
+        .emoji {
+            position: absolute;
+            font-size: 40px;
+            animation: fadeOut 2s forwards;
+        }
+        @keyframes fadeOut {
+            0% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+        #imageContainer {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 3;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+        #imageContainer img {
+        max-width: 90vw;   /* Set max width to 90% of the viewport width */
+        max-height: 90vh;  /* Set max height to 90% of the viewport height */
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        object-fit: contain; /* Maintain aspect ratio while fitting */
+    }
+        #overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 228, 225, 0.7); /* Semi-transparent overlay */
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="overlay"></div> <!-- Overlay div -->
+    <h1>Are you my forever love?</h1> <!-- Indirect question -->
+
+    <div class="buttons">
+        <button id="yes">Absolutely!</button> <!-- Modified button text -->
+        <button id="no">Not quite...</button> <!-- Modified button text -->
+    </div>
+
+    <div id="imageContainer">
+        <img src="images/img10.jpeg" alt="Love Image" id="loveImage">
+    </div>
+
+    <script>
+    const noButton = document.getElementById('no');
+    const yesButton = document.getElementById('yes');
+    const body = document.body;
+    const overlay = document.getElementById('overlay');
+    const imageContainer = document.getElementById('imageContainer');
+    let position = { x: 0, y: 0 };
+    let noEmojiInterval, yesEmojiInterval;
+
+    // Function to show emojis
+    function showEmoji(emoji) {
+        const emojiElement = document.createElement('div');
+        emojiElement.textContent = emoji;
+        emojiElement.classList.add('emoji');
+
+        // Random position on screen
+        emojiElement.style.left = Math.random() * window.innerWidth + 'px';
+        emojiElement.style.top = Math.random() * window.innerHeight + 'px';
+
+        body.appendChild(emojiElement);
+
+        // Remove emoji after animation
+        setTimeout(() => {
+            emojiElement.remove();
+        }, 2000);
+    }
+
+    // Check if cursor is near "No" button
+    function checkCursorNearNoButton(cursorX, cursorY) {
+        const rect = noButton.getBoundingClientRect();
+        const offsetX = cursorX - (rect.left + rect.width / 2);
+        const offsetY = cursorY - (rect.top + rect.height / 2);
+        const distance = Math.sqrt(offsetX * offsetX + offsetY * offsetY);
+        return distance < 70; // Adjusting sensitivity for distance
+    }
+
+    noButton.addEventListener('mouseover', () => {
+        let deltaX = (Math.random() > 0.5 ? 1 : -1) * (100 + Math.random() * 50);
+        let deltaY = (Math.random() > 0.5 ? 1 : -1) * (50 + Math.random() * 30);
+        position.x += deltaX;
+        position.y += deltaY;
+        noButton.style.transform = `translate(${position.x}px, ${position.y}px)`;
+
+        if (!noEmojiInterval) {
+            noEmojiInterval = setInterval(() => showEmoji('😢'), 50); // Show cry emoji
+        }
+    });
+
+    yesButton.addEventListener('click', () => {
+        overlay.style.display = 'block'; // Show the overlay
+        imageContainer.style.display = 'block'; // Show the image container
+        setTimeout(() => {
+            imageContainer.style.opacity = 1; // Fade in the image
+        }, 10);
+    });
+
+    yesButton.addEventListener('mouseover', () => {
+        clearInterval(noEmojiInterval);
+        noEmojiInterval = null;
+
+        if (!yesEmojiInterval) {
+            yesEmojiInterval = setInterval(() => showEmoji('😍'), 50); // Show love emoji
+        }
+    });
+
+    // Close overlay when clicking the image container
+    overlay.addEventListener('click', () => {
+        overlay.style.display = 'none'; // Hide overlay
+        imageContainer.style.display = 'none'; // Hide image container
+    });
+
+    document.addEventListener('mousemove', (event) => {
+        if (checkCursorNearNoButton(event.clientX, event.clientY)) {
+            if (!noEmojiInterval) {
+                noEmojiInterval = setInterval(() => showEmoji('😢'), 50); // Show cry emojis if near
+            }
+        } else {
+            clearInterval(noEmojiInterval);
+            noEmojiInterval = null;
+        }
+    });
+
+    noButton.addEventListener('mouseout', () => {
+        clearInterval(noEmojiInterval);
+        noEmojiInterval = null;
+    });
+
+    yesButton.addEventListener('mouseout', () => {
+        clearInterval(yesEmojiInterval);
+        yesEmojiInterval = null;
+    });
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Us</title>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            background-color: #f9f5f5;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 48px;
+            color: #ff5e6c;
+            animation: fadeIn 2s ease-in;
+        }
+
+        .love-letter {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff3f3;
+            border: 2px solid #ff5e6c;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            animation: slideIn 1s ease-in-out;
+        }
+
+        .love-letter::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 200%;
+            height: 100%;
+            background: rgba(255, 94, 108, 0.2);
+            border-radius: 10px;
+            transform: translateX(-50%);
+            animation: pulse 3s infinite;
+            z-index: -1;
+        }
+
+        .letter-content {
+            padding: 20px;
+            position: relative;
+        }
+
+        .letter-content p {
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .signature {
+            margin-top: 30px;
+            font-style: italic;
+            text-align: right;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Us</h1>
+    <div class="love-letter">
+        <div class="letter-content">
+            <p>Dear Aishu,</p>
+            <p>From the very first moment we connected, I felt a spark that was unlike anything I've ever experienced. Your messages made me smile, and our conversations have brought me so much joy. You have this amazing ability to light up my day, even when things seem dull.</p>
+            <p>As we got to know each other, I realized how special you are to me. The way you laugh, your little quirks, and the kindness you show to everyone around you make me appreciate you even more. I cherish every moment we spend together and look forward to making many more beautiful memories.</p>
+            <p>Thank you for being you—funny, sweet, and absolutely wonderful. I can't wait to see where this journey takes us. You mean the world to me, and I hope you know that.</p>
+            <p>With all my love,</p>
+            <div class="signature">[Your Name]</div>
+        </div>
+    </div>
+</body>
+</html>

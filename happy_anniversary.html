@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy First Date Day</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 48px;
+            margin: 20px 0;
+            color: #ff5e6c;
+        }
+
+        .timeline-container {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        .timeline-item {
+            background-color: #fff;
+            border: 2px solid rgba(255, 94, 108, 0.5);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            margin: 20px 0;
+            padding: 15px;
+            position: relative;
+        }
+
+        .timeline-item-heading {
+            font-size: 20px;
+            color: #ff5e6c;
+            margin-bottom: 5px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .timeline-content {
+            font-size: 18px;
+            color: #333;
+            margin: 10px 0;
+        }
+
+        .timeline-images {
+            margin-top: 15px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .timeline-images img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .timeline-images img:hover {
+            transform: scale(1.05);
+        }
+
+        .timeline-divider {
+            width: 4px;
+            height: 100%;
+            background-color: #ff5e6c;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: -1;
+        }
+
+        .timeline-item:nth-child(even) {
+            align-self: flex-start;
+            text-align: left;
+        }
+
+        .timeline-item:nth-child(odd) {
+            align-self: flex-end;
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(even)::before {
+            left: auto;
+            right: -20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Happy First Date Day</h1>
+    <div class="timeline-container">
+
+        <div class="timeline-item">
+            <div class="timeline-item-heading">1 July: Matched on Hinge</div>
+            <div class="timeline-content">It all started with that one magical picture from Manali. Aishu's first message—a long, thoughtful introduction—made me feel like the luckiest guy. I thought, "Wow, she's different!" Usually, girls don’t send such long texts, but maybe she liked me a little more than usual! 😉</div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-item-heading">10 July: Instagram Adventures Begin</div>
+            <div class="timeline-content">We moved to Instagram, and suddenly, nights got shorter because time seemed to disappear while talking. Sharing posts, laughing over memes, sending emojis (except for that thumbs-up—I never liked that one 😂)—it felt like we couldn’t stop.</div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-item-heading">17 August: The WhatsApp Upgrade</div>
+            <div class="timeline-content">Double trouble! Insta + WhatsApp = non-stop chats. Stickers, emojis, voice notes—it felt like we were texting all day. It was like our own little world, filled with cute stickers and even cuter conversations. 🥰</div>
+            <div class="timeline-images">
+                <img src="images/17aug.png" alt="17 August" onclick="openImage(this.src)">
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-item-heading">2 September: Convocation Confirmation</div>
+            <div class="timeline-content">The big news! Aishu confirmed she’d be in Delhi for her convocation. I was doing an internal happy dance—couldn’t wait to see her! 💃🕺</div>
+            <div class="timeline-images">
+                <img src="images/2sept.png" alt="2 September" onclick="openImage(this.src)">
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-item-heading">23 September: First Date Set for 6th October</div>
+            <div class="timeline-content">The excitement was real! We finally decided on the day: 6th October. Planning for a movie, I convinced her to watch a horror film. 😜 Everything was set—half-day leave from work, and I was counting down the days!</div>
+            <div class="timeline-images">
+                <img src="images/23sept-1.png" alt="23 September" onclick="openImage(this.src)">
+                <img src="images/23sept-2.png" alt="23 September" onclick="openImage(this.src)">
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-item-heading">6 October: The First Date</div>
+            <div class="timeline-content">The day arrived. My heart was racing, and I was excited to finally see her. I left on time (of course!), but Aishu… well, timing wasn’t exactly her thing that day. She didn’t even know which mall to go to, and she was saying she had taken an auto! 😆 She arrived at the mall but wasn’t sure which floor to go to, and I waited downstairs while she looked around. When we finally spotted each other, we exchanged that first look, confirmed it was us, shared a little hug, and went in for the movie.<br><br>She watched the movie, and I—well, I watched her and the movie. 😊 Afterward, we headed to a café. I was a little shy at first, but she made it easy. It was one of those days you wish could last longer. And as we booked a cab to head back, I rested my hand on her shoulder, and we talked some more. Time flew by so quickly, and I wondered if she enjoyed it as much as I did... and whether we’d meet again soon. 💖</div>
+            <div class="timeline-images">
+                <img src="images/6oct-1.png" alt="6 October" onclick="openImage(this.src)">
+                <img src="images/6oct-2.png" alt="6 October" onclick="openImage(this.src)">
+                <img src="images/6oct-3.png" alt="6 October" onclick="openImage(this.src)">
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function openImage(src) {
+            const imgWindow = window.open("", "Image Viewer", "width=600,height=400");
+            imgWindow.document.write(`<html><head><title>Image</title></head><body style="margin: 0; display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #f4f4f9;"><img src="${src}" style="max-width: 100%; max-height: 100%;"></body></html>`);
+        }
+    </script>
+</body>
+</html>

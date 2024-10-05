@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Album</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: 'Arial', sans-serif;
+            background-color: #ffefdb; /* Light peach color */
+        }
+
+        /* Header Style */
+        h1 {
+            text-align: center;
+            color: #ff1493;
+            font-size: 3em;
+            margin-bottom: 40px;
+            font-weight: bold;
+        }
+
+        h1 span {
+            color: #ff4500; /* Highlighted color for 'Album' */
+            font-size: 1.2em;
+            font-style: italic;
+        }
+
+        /* Collage Grid */
+        .collage {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 15px; /* Space between images */
+            max-width: 1000px;
+            margin: 0 auto;
+            border: 5px solid #d2691e; /* Outer border for collage */
+            padding: 10px;
+            background-color: #fff; /* Collage background */
+            border-radius: 20px; /* Rounded corners for the collage */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Shadow effect */
+        }
+
+        .collage-item {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            border: 3px solid #ffdead; /* Border for individual images */
+            border-radius: 10px; /* Rounded edges for each image */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .collage-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+            border-radius: 10px;
+        }
+
+        .collage-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Hover effect with shadow */
+        }
+
+        /* Different Sizes */
+        .collage-item:nth-child(1) {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+
+        .collage-item:nth-child(3) {
+            grid-column: span 2;
+        }
+
+        .collage-item:nth-child(6) {
+            grid-column: span 2;
+        }
+
+        /* Lightbox */
+        #lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 100;
+        }
+
+        #lightbox img {
+    max-width: 80%;  /* Limit the width to 80% of the viewport */
+    max-height: 80vh;  /* Limit the height to 80% of the viewport height */
+    height: auto;  /* Maintain aspect ratio */
+    width: auto;   /* Maintain aspect ratio */
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+}
+
+        /* Styled text box beneath image */
+        .caption-box {
+            background-color: rgba(50, 50, 50, 0.8); /* Dark gray background with transparency */
+            padding: 10px 15px; /* Reduced padding */
+            margin-top: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5), inset 0 0 5px rgba(255, 20, 147, 0.6); /* Outer and inner shadows */
+            transform: rotate(-2deg); /* Slight slant effect */
+            border: 3px solid #ff1493; /* Border color */
+            position: relative; /* Position for the pseudo-element */
+            width: auto;  /* Allow width to adjust based on content */
+            max-width: 90%;  /* Ensure it doesn’t exceed a certain width on small screens */
+        }
+
+        .caption-box::before {
+            content: '';
+            position: absolute;
+            top: -8px; /* Adjust based on your design */
+            left: -8px; /* Adjust based on your design */
+            right: -8px; /* Adjust based on your design */
+            bottom: -8px; /* Adjust based on your design */
+            border-radius: 10px; /* Rounded corners for frame effect */
+            border: 3px solid rgba(255, 20, 147, 0.8); /* Lighter color for the frame */
+            z-index: -1; /* Place it behind the caption box */
+            transform: rotate(2deg); /* Opposite slant to create the frame effect */
+        }
+
+        .caption {
+            color: #f0f0f0; /* Light gray text color */
+            font-size: 1.5em;
+            font-family: 'Cursive', sans-serif; /* Handwriting-like font */
+            text-align: center;
+            font-style: italic;
+        }
+
+        /* Fade out other images when lightbox is open */
+        .fade-out {
+            opacity: 0.2;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .collage {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .collage-item:nth-child(1),
+            .collage-item:nth-child(3),
+            .collage-item:nth-child(6) {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
+
+            #lightbox img {
+                width: 80%;
+                max-width: 90%;
+            }
+
+            .caption-box {
+                max-width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>An <span>Album</span> of Memories</h1>
+
+    <div class="collage">
+        <!-- Image 1 to 9 using images/xyz.png -->
+        <div class="collage-item" onclick="openLightbox('images/img1.jpeg', 'One of our favorite You-Me(e) photos! ❤️ Thank God aapne uss din apne braincells chalaake photo kheech li')">
+            <img src="images/img1.jpeg" alt="Memory 1">
+        </div>
+
+        <div class="collage-item" onclick="openLightbox('images/img6.png', 'Finally fulfilling our long-time dream of visiting Akshardham together! ❤️✨')">
+            <img src="images/img6.png" alt="Memory 2">
+        </div>
+
+        <div class="collage-item" onclick="openLightbox('images/img3.png', 'You looked absolutely hot in that blue dress! 🔥 I cant wait to see you like that again, maybe in black, and shower you with kisses all over! 🥵')">
+            <img src="images/img3.png" alt="Memory 3">
+        </div>
+
+        <div class="collage-item" onclick="openLightbox('images/img4.png', 'Just a sweet moment on a video call with my love and our Pookie! 💕')">
+            <img src="images/img4.png" alt="Memory 4">
+        </div>
+
+        <div class="collage-item" onclick="openLightbox('images/xyz.png', 'It was cute watching you fall with your little legs. Next time, when we become pros, lets hold hands and skate together! 🤭')">
+            <img src="images/xyz.png" alt="Memory 5">
+        </div>
+
+        <div class="collage-item" onclick="openLightbox('images/img5.png', 'Ab tak toh dilli ke saare malls hume pehchaan chuke honge ...weekend toh wahi jaata hai humara.😂')">
+            <img src="images/img5.png" alt="Memory 6">
+        </div>
+
+        <div class="collage-item" onclick="openLightbox('images/img8.jpeg', 'The secret to your beauty increasing day by day! 🥰 But mine is stuck! 😂')">
+            <img src="images/img8.jpeg" alt="Memory 7">
+        </div>
+
+        <div class="collage-item" onclick="openLightbox('images/img9.png', 'So many random movie dates with youuu!  started with a horror movie, and I cant wait for more fun ones! 😌')">
+            <img src="images/img9.png" alt="Memory 8">
+        </div>
+
+        <div class="collage-item" onclick="openLightbox('images/img7.jpeg', 'Cricket was so much fun that day, but tumne iss maasoom ko cheating karke hara diya 😭')">
+            <img src="images/img7.jpeg" alt="Memory 9">
+        </div>
+    </div>
+
+    <div id="lightbox">
+        <img id="lightbox-img" src="" alt="">
+        <div class="caption-box">
+            <div class="caption" id="caption-text"></div>
+        </div>
+    </div>
+
+    <script>
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const captionText = document.getElementById('caption-text');
+        const collageItems = document.querySelectorAll('.collage-item');
+
+        function openLightbox(src, caption) {
+            lightbox.style.display = 'flex';
+            lightboxImg.src = src;
+            captionText.textContent = caption;
+
+            // Fade out other images
+            collageItems.forEach(item => {
+                item.classList.add('fade-out');
+            });
+        }
+
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                lightbox.style.display = 'none';
+                collageItems.forEach(item => {
+                    item.classList.remove('fade-out');
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>

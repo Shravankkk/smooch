@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I Love You</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #FFB6C1; /* Soft pink background */
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            position: relative;
+        }
+        h1 {
+            font-size: 60px;
+            color: #FF69B4;
+            text-align: center;
+            position: absolute;
+            white-space: nowrap;
+        }
+        .sparkle {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .sparkle div {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background-color: #fff;
+            border-radius: 50%;
+            animation: sparkle 1.5s infinite;
+        }
+        @keyframes sparkle {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.5);
+                opacity: 0.5;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1 id="phrase"></h1>
+    
+    <div class="sparkle" id="sparkleContainer"></div>
+
+    <script>
+        const phrases = [
+            "I love you 💖",
+            "मैं तुमसे प्यार करता हूँ 💕",
+            "నేను నిన్ను ప్రేమిస్తున్నాను❤️(Nēnu ninnu prēmistunnānu)",
+            "사랑해요 💙 (Salanghaeyo)"
+        ];
+
+        let index = 0;
+        const phraseElement = document.getElementById('phrase');
+
+        function displayPhrase() {
+            if (index >= phrases.length) return;
+
+            const currentPhrase = phrases[index];
+            phraseElement.textContent = ''; // Clear previous text
+            let letterIndex = 0;
+
+            const letterInterval = setInterval(() => {
+                if (letterIndex < currentPhrase.length) {
+                    phraseElement.textContent += currentPhrase[letterIndex];
+                    letterIndex++;
+                } else {
+                    clearInterval(letterInterval);
+                    setTimeout(() => {
+                        phraseElement.style.opacity = 0; // Fade out effect
+                        const removalInterval = setInterval(() => {
+                            if (letterIndex > 0) {
+                                letterIndex--;
+                                phraseElement.textContent = currentPhrase.slice(0, letterIndex);
+                            } else {
+                                clearInterval(removalInterval);
+                                phraseElement.style.opacity = 1; // Reset opacity for next phrase
+                                index++;
+                                setTimeout(displayPhrase, 1000); // Wait 1 second before showing next phrase
+                            }
+                        }, 100); // Adjust this value for speed of letter removal
+                    }, 1000); // Wait 1 second before starting to remove letters
+                }
+            }, 200); // Adjust this value for speed of letter appearance
+        }
+
+        function createSparkles() {
+            const sparkleContainer = document.getElementById('sparkleContainer');
+            for (let i = 0; i < 100; i++) { // Create 100 sparkles
+                const sparkle = document.createElement('div');
+                sparkle.style.left = Math.random() * 100 + 'vw';
+                sparkle.style.top = Math.random() * 100 + 'vh';
+                sparkle.style.animationDelay = Math.random() * 2 + 's'; // Random delay
+                sparkleContainer.appendChild(sparkle);
+            }
+        }
+
+        createSparkles(); // Initialize sparkles
+        displayPhrase(); // Start displaying phrases
+    </script>
+
+</body>
+</html>
